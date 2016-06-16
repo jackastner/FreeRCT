@@ -176,11 +176,14 @@ public:
 	void Load(Loader &ldr);
 	void Save(Saver &svr);
 
-	const CoasterInstance *coaster;        ///< Roller coaster owning the train.
+	CoasterInstance *coaster;              ///< Roller coaster owning the train.
 	std::vector<CoasterCar> cars;          ///< Cars in the train. \c 0 means the train is not used.
 	uint32 back_position;                  ///< Position of the back-end of the train (in 1/256 pixels).
 	int32 speed;                           ///< Amount of forward motion / millisecond, in 1/256 pixels.
 	const PositionedTrackPiece *cur_piece; ///< Track piece that has the back-end position of the train.
+
+private:
+	void UpdateRatings();
 };
 
 /**
@@ -244,6 +247,10 @@ public:
 	uint32 coaster_length;        ///< Total length of the roller coaster track (in 1/256 pixels).
 	CoasterTrain trains[4];       ///< Trains at the roller coaster (with an arbitrary max size). A train without cars means the train is not used.
 	const CarType *car_type;      ///< Type of cars running at the coaster.
+
+	int32 max_speed;         ///< maximum speed recorded while testing ride
+	int32 avg_speed;         ///< average speed recorded while testing ride
+	int16 time;              ///< running time of ride (ticks passsed while testing)
 };
 
 bool LoadCoasterPlatform(RcdFileReader *rcdfile, const ImageMap &sprites);

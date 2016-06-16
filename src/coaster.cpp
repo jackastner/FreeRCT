@@ -348,12 +348,28 @@ static void inline Unroll(uint roll, int32 *dy, int32 *dz)
 	*dz = new_dz;
 }
 
+void CoasterTrain::UpdateRatings()
+{
+	if (this->coaster->state == RIS_TESTING){
+		/*updated max_speed*/
+		if(this->speed > this->coaster->max_speed){
+			this->coaster->max_speed = this->speed;
+		}
+
+		/*update average_speed*/
+		this->coaster->avg_speed += speed;
+		this->coaster->time++;
+	}
+}
+
 /**
  * Time has passed, update the position of the train.
  * @param delay Amount of time passed, in milliseconds.
  */
 void CoasterTrain::OnAnimate(int delay)
 {
+	this->UpdateRatings();
+
 	if (this->speed >= 0) {
 		this->back_position += this->speed * delay;
 		if (this->back_position >= this->coaster->coaster_length) {
