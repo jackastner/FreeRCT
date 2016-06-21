@@ -248,9 +248,11 @@ public:
 	CoasterTrain trains[4];       ///< Trains at the roller coaster (with an arbitrary max size). A train without cars means the train is not used.
 	const CarType *car_type;      ///< Type of cars running at the coaster.
 
+	int16 max_height;        ///< maximum height recorded while testing ride
 	int32 max_speed;         ///< maximum speed recorded while testing ride
 	int32 avg_speed;         ///< average speed recorded while testing ride
 	int16 time;              ///< running time of ride (ticks passsed while testing)
+
 };
 
 bool LoadCoasterPlatform(RcdFileReader *rcdfile, const ImageMap &sprites);

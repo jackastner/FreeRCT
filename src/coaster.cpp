@@ -359,6 +359,11 @@ void CoasterTrain::UpdateRatings()
 		/*update average_speed*/
 		this->coaster->avg_speed += speed;
 		this->coaster->time++;
+
+		/*update max_height*/
+		if(this->cur_piece->base_voxel.z > this->coaster->max_height){
+		    this->coaster->max_height = this->cur_piece->base_voxel.z;
+		}
 	}
 }
 
