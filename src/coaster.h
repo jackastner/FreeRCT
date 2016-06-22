@@ -249,6 +249,9 @@ public:
 	const CarType *car_type;      ///< Type of cars running at the coaster.
 
 	int16 max_height;        ///< maximum height recorded while testing ride
+	int16 prev_height;       ///< when testing remembers height of last track segment
+	bool in_drop;            ///< when testing remembers if the ride is currently dropping
+	int16 drop_count;        ///< number of drops recorded while testing ride
 	int32 max_speed;         ///< maximum speed recorded while testing ride
 	int32 avg_speed;         ///< average speed recorded while testing ride
 	int16 time;              ///< running time of ride (ticks passsed while testing)
