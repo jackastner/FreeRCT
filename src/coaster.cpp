@@ -352,31 +352,31 @@ void CoasterTrain::UpdateRatings()
 {
 	if (this->coaster->state == RIS_TESTING){
 		/*updated max_speed*/
-		if(this->speed > this->coaster->max_speed){
-			this->coaster->max_speed = this->speed;
+		if(this->speed > this->max_speed){
+			this->max_speed = this->speed;
 		}
 
 		/*update average_speed*/
-		this->coaster->avg_speed += speed;
-		this->coaster->time++;
+		this->avg_speed += speed;
+		this->time++;
 
 		int16 cur_height = this->cur_piece->base_voxel.z;
 
 		/*update max_height*/
-		if(cur_height> this->coaster->max_height){
-		    this->coaster->max_height = cur_height;
+		if(cur_height> this->max_height){
+		    this->max_height = cur_height;
 		}
 
 		/*update drop count*/
-		if(this->coaster->in_drop){
-			if(cur_height > this->coaster->prev_height){
-				this->coaster->in_drop = false;
+		if(this->in_drop){
+			if(cur_height > this->prev_height){
+				this->in_drop = false;
 			}
-		} else if (cur_height < this->coaster->prev_height){
-			this->coaster->in_drop = true;
-			this->coaster->drop_count++;
+		} else if (cur_height < this->prev_height){
+			this->in_drop = true;
+			this->drop_count++;
 		}
-		this->coaster->prev_height = cur_height;
+		this->prev_height = cur_height;
 	}
 }
 
