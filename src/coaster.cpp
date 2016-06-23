@@ -350,7 +350,11 @@ static void inline Unroll(uint roll, int32 *dy, int32 *dz)
 
 void CoasterTrain::UpdateRatings()
 {
-	if (this->coaster->state == RIS_TESTING){
+	/*set completed_curcuit flag if back_position has looped around*/
+	this->completed_circuits += this->back_position < this->prev_back_position;
+	this->prev_back_position = this->back_position;
+
+	if (this->completed_circuits == 1 && this->coaster->state == RIS_TESTING){
 		/*updated max_speed*/
 		if(this->speed > this->max_speed){
 			this->max_speed = this->speed;
@@ -377,7 +381,7 @@ void CoasterTrain::UpdateRatings()
 			this->drop_count++;
 		}
 		this->prev_height = cur_height;
-	}
+	} 
 }
 
 /**

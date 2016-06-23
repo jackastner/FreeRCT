@@ -182,13 +182,15 @@ public:
 	int32 speed;                           ///< Amount of forward motion / millisecond, in 1/256 pixels.
 	const PositionedTrackPiece *cur_piece; ///< Track piece that has the back-end position of the train.
 
-	int16 max_height;        ///< maximum height recorded while testing ride
-	int16 prev_height;       ///< when testing remembers height of last track segment
-	bool in_drop;            ///< when testing remembers if the ride is currently dropping
-	int16 drop_count;        ///< number of drops recorded while testing ride
-	int32 max_speed;         ///< maximum speed recorded while testing ride
-	int32 avg_speed;         ///< average speed recorded while testing ride
-	int16 time;              ///< running time of ride (ticks passsed while testing)
+	uint8 completed_circuits;  ///< statistics should only be gathered durring second test circuit
+	uint32 prev_back_position; ///< used to detect when back_position loops around
+	int16 max_height;          ///< maximum height recorded while testing ride
+	int16 prev_height;         ///< when testing remembers height of last track segment
+	bool in_drop;              ///< when testing remembers if the ride is currently dropping
+	int16 drop_count;          ///< number of drops recorded while testing ride
+	int32 max_speed;           ///< maximum speed recorded while testing ride
+	int32 avg_speed;           ///< average speed recorded while testing ride
+	int16 time;                ///< running time of ride (ticks passsed while testing)
 
 private:
 	void UpdateRatings();
