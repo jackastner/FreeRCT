@@ -21,6 +21,10 @@
 /** Widget numbers of the roller coaster instance window. */
 enum CoasterInstanceWidgets {
 	CIW_TITLEBAR, ///< Titlebar widget.
+        CIW_MAX_HEIGHT,
+        CIW_DROP_COUNT,
+        CIW_MAX_SPEED,
+        CIW_AVG_SPEED,
 };
 
 /** Widget parts of the #CoasterInstanceWindow. */
@@ -33,6 +37,10 @@ static const WidgetPart _coaster_instance_gui_parts[] = {
 
 		Widget(WT_PANEL, INVALID_WIDGET_INDEX, COL_RANGE_DARK_RED),
 			Widget(WT_EMPTY, INVALID_WIDGET_INDEX, COL_RANGE_DARK_RED), SetMinimalSize(100, 100),
+			Widget(WT_RIGHT_TEXT, CIW_MAX_HEIGHT, COL_RANGE_DARK_RED), SetData(STR_ARG1, STR_NULL),
+			Widget(WT_RIGHT_TEXT, CIW_DROP_COUNT, COL_RANGE_DARK_RED), SetData(STR_ARG1, STR_NULL),
+			Widget(WT_RIGHT_TEXT, CIW_MAX_SPEED, COL_RANGE_DARK_RED), SetData(STR_ARG1, STR_NULL),
+			Widget(WT_RIGHT_TEXT, CIW_AVG_SPEED, COL_RANGE_DARK_RED), SetData(STR_ARG1, STR_NULL),
 	EndContainer(),
 };
 
@@ -71,6 +79,18 @@ void CoasterInstanceWindow::SetWidgetStringParameters(WidgetNumber wid_num) cons
 	switch (wid_num) {
 		case CIW_TITLEBAR:
 			_str_params.SetUint8(1, (uint8 *)this->ci->name);
+			break;
+		case CIW_MAX_HEIGHT:
+			_str_params.SetNumber(1,this->ci->trains[0].max_height);
+			break;
+		case CIW_DROP_COUNT:
+			_str_params.SetNumber(1,this->ci->trains[0].drop_count);
+			break;
+		case CIW_MAX_SPEED:
+			_str_params.SetNumber(1,this->ci->trains[0].max_speed);
+			break;
+		case CIW_AVG_SPEED:
+			_str_params.SetNumber(1,this->ci->trains[0].avg_speed/(this->ci->trains[0].time+1));
 			break;
 	}
 }
