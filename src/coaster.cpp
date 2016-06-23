@@ -301,6 +301,16 @@ CoasterTrain::CoasterTrain()
 	this->back_position = 0;
 	this->speed = 0;
 	this->cur_piece = nullptr; // Set later.
+
+	this->completed_circuits = 0;
+	this->prev_back_position = 0;
+	this->max_height = 0;
+	this->prev_height = 0;
+	this->in_drop = false;
+	this->drop_count = 0;
+	this->max_speed = 0;
+	this->avg_speed = 0;
+	this->time = 0;
 }
 
 /**
