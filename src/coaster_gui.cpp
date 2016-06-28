@@ -36,7 +36,7 @@ static const WidgetPart _coaster_instance_gui_parts[] = {
 		EndContainer(),
 
 		Widget(WT_PANEL, INVALID_WIDGET_INDEX, COL_RANGE_DARK_RED),
-			Widget(WT_EMPTY, INVALID_WIDGET_INDEX, COL_RANGE_DARK_RED), SetMinimalSize(100, 100),
+			Intermediate(4, 1), SetPadding(2, 2, 2, 2),
 			Widget(WT_RIGHT_TEXT, CIW_MAX_HEIGHT, COL_RANGE_DARK_RED), SetData(STR_ARG1, STR_NULL),
 			Widget(WT_RIGHT_TEXT, CIW_DROP_COUNT, COL_RANGE_DARK_RED), SetData(STR_ARG1, STR_NULL),
 			Widget(WT_RIGHT_TEXT, CIW_MAX_SPEED, COL_RANGE_DARK_RED), SetData(STR_ARG1, STR_NULL),
