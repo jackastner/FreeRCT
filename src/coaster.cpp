@@ -381,14 +381,19 @@ void CoasterTrain::UpdateRatings()
 		    this->max_height = cur_height;
 		}
 
-		/*update drop count*/
+		/*update drop count and max_drop_height*/
 		if(this->in_drop){
 			if(cur_height > this->prev_height){
+				int16 drop_height = this->drop_start_height - prev_height;
+				if(drop_height > this->max_drop_height){
+					this->max_drop_height = drop_height;
+				}
 				this->in_drop = false;
 			}
 		} else if (cur_height < this->prev_height){
 			this->in_drop = true;
 			this->drop_count++;
+			this->drop_start_height = prev_height;
 		}
 		this->prev_height = cur_height;
 	} 
