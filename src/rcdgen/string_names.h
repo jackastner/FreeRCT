@@ -139,6 +139,12 @@ static const char *_gui_string_names[] = {
 	"SHOP_MANAGER_OPENED_TEXT",
 	"SHOP_MANAGER_CLOSED_TEXT",
 
+	/* Coaster instance window strings. */
+	"COASTER_INSTANCE_MAX_HEIGHT_TEXT",
+	"COASTER_INSTANCE_DROP_COUNT_TEXT",
+	"COASTER_INSTANCE_MAX_SPEED_TEXT",
+	"COASTER_INSTANCE_AVG_SPEED_TEXT",
+
 	/* Fence window. */
 	"FENCE_TITLE",
 

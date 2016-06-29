@@ -134,6 +134,12 @@ strings {
 		SHOP_MANAGER_OPENED_TEXT:        "Shop is open";
 		SHOP_MANAGER_CLOSED_TEXT:        "Shop is closed";
 
+		// Coaster instance window strings.
+		COASTER_INSTANCE_MAX_HEIGHT_TEXT: "Max Height";
+		COASTER_INSTANCE_DROP_COUNT_TEXT: "Drop Count";
+		COASTER_INSTANCE_MAX_SPEED_TEXT:  "Max Speed";
+		COASTER_INSTANCE_AVG_SPEED_TEXT:  "AVG Speed";
+
 		// Fence gui strings.
 		FENCE_TITLE:           "Build fences";
 
