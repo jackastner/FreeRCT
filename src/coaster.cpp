@@ -308,6 +308,7 @@ CoasterTrain::CoasterTrain()
 	this->prev_height = 0;
 	this->in_drop = false;
 	this->drop_count = 0;
+	this->max_drop_height = 0;
 	this->max_speed = 0;
 	this->avg_speed = 0;
 	this->time = 0;
