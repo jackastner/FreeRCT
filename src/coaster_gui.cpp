@@ -26,6 +26,9 @@ enum CoasterInstanceWidgets {
 	CIW_MAX_DROP_HEIGHT,
         CIW_MAX_SPEED,
         CIW_AVG_SPEED,
+	CIW_MAX_LAT_G,
+	CIW_MAX_POS_VERT_G,
+	CIW_MAX_NEG_VERT_G,
 };
 
 /** Widget parts of the #CoasterInstanceWindow. */
@@ -37,7 +40,7 @@ static const WidgetPart _coaster_instance_gui_parts[] = {
 		EndContainer(),
 
 		Widget(WT_PANEL, INVALID_WIDGET_INDEX, COL_RANGE_DARK_RED),
-			Intermediate(5, 2), SetPadding(2, 2, 2, 2),
+			Intermediate(8, 2), SetPadding(2, 2, 2, 2),
 			Widget(WT_LEFT_TEXT, INVALID_WIDGET_INDEX, COL_RANGE_DARK_RED), SetData(GUI_COASTER_INSTANCE_MAX_HEIGHT_TEXT,STR_NULL),
 			Widget(WT_RIGHT_TEXT, CIW_MAX_HEIGHT, COL_RANGE_DARK_RED), SetData(STR_ARG1, STR_NULL),SetMinimalSize(60, 10),
 
@@ -52,6 +55,15 @@ static const WidgetPart _coaster_instance_gui_parts[] = {
 
 			Widget(WT_LEFT_TEXT, INVALID_WIDGET_INDEX, COL_RANGE_DARK_RED), SetData(GUI_COASTER_INSTANCE_AVG_SPEED_TEXT,STR_NULL),
 			Widget(WT_RIGHT_TEXT, CIW_AVG_SPEED, COL_RANGE_DARK_RED), SetData(STR_ARG1, STR_NULL),SetMinimalSize(60, 10),
+
+			Widget(WT_LEFT_TEXT, INVALID_WIDGET_INDEX, COL_RANGE_DARK_RED), SetData(GUI_COASTER_INSTANCE_MAX_LAT_G_TEXT,STR_NULL),
+			Widget(WT_RIGHT_TEXT, CIW_MAX_LAT_G, COL_RANGE_DARK_RED), SetData(STR_ARG1, STR_NULL),SetMinimalSize(60, 10),
+
+			Widget(WT_LEFT_TEXT, INVALID_WIDGET_INDEX, COL_RANGE_DARK_RED), SetData(GUI_COASTER_INSTANCE_MAX_POS_VERT_G_TEXT,STR_NULL),
+			Widget(WT_RIGHT_TEXT, CIW_MAX_POS_VERT_G, COL_RANGE_DARK_RED), SetData(STR_ARG1, STR_NULL),SetMinimalSize(60, 10),
+
+			Widget(WT_LEFT_TEXT, INVALID_WIDGET_INDEX, COL_RANGE_DARK_RED), SetData(GUI_COASTER_INSTANCE_MAX_NEG_VERT_G_TEXT,STR_NULL),
+			Widget(WT_RIGHT_TEXT, CIW_MAX_NEG_VERT_G, COL_RANGE_DARK_RED), SetData(STR_ARG1, STR_NULL),SetMinimalSize(60, 10),
 
 	EndContainer(),
 };
@@ -106,6 +118,15 @@ void CoasterInstanceWindow::SetWidgetStringParameters(WidgetNumber wid_num) cons
 			break;
 		case CIW_AVG_SPEED:
 			_str_params.SetNumber(1,this->ci->trains[0].avg_speed/(this->ci->trains[0].time+1));
+			break;
+		case CIW_MAX_LAT_G:
+			_str_params.SetNumber(1,this->ci->trains[0].max_lat_g);
+			break;
+		case CIW_MAX_POS_VERT_G:
+			_str_params.SetNumber(1,this->ci->trains[0].max_pos_vert_g);
+			break;
+		case CIW_MAX_NEG_VERT_G:
+			_str_params.SetNumber(1,this->ci->trains[0].max_neg_vert_g);
 			break;
 	}
 }

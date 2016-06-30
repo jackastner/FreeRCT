@@ -140,6 +140,9 @@ strings {
 		COASTER_INSTANCE_MAX_DROP_HEIGHT_TEXT: "Max Drop Height";
 		COASTER_INSTANCE_MAX_SPEED_TEXT:       "Max Speed";
 		COASTER_INSTANCE_AVG_SPEED_TEXT:       "AVG Speed";
+		COASTER_INSTANCE_MAX_LAT_G_TEXT:       "Max Lateral G's";
+		COASTER_INSTANCE_MAX_POS_VERT_G_TEXT:  "Max Positive Vertical G's";
+		COASTER_INSTANCE_MAX_NEG_VERT_G_TEXT:  "Max Negative Vertical G's";
 
 		// Fence gui strings.
 		FENCE_TITLE:           "Build fences";
