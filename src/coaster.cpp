@@ -312,6 +312,9 @@ CoasterTrain::CoasterTrain()
 	this->max_speed = 0;
 	this->avg_speed = 0;
 	this->time = 0;
+	this->max_lat_g = 0;
+	this->max_pos_vert_g = 0;
+	this->max_neg_vert_g = 0;
 }
 
 /**
@@ -397,6 +400,20 @@ void CoasterTrain::UpdateRatings()
 			this->drop_start_height = prev_height;
 		}
 		this->prev_height = cur_height;
+
+		/*update maximum G forces*/
+		int16 cur_lat_g = this->speed * this->cur_piece->piece->GetLateralMultiplier();
+		int16 cur_vert_g = this->speed * this->cur_piece->piece->GetVerticalMultiplier();
+
+		if(cur_lat_g > this->max_lat_g){
+			this->max_lat_g = cur_lat_g;
+		}
+		if(cur_vert_g > this->max_pos_vert_g){
+			this->max_pos_vert_g = cur_vert_g;
+		} else if (cur_vert_g < this->max_neg_vert_g){
+			this->max_neg_vert_g = cur_vert_g;
+		}
+
 	} 
 }
 

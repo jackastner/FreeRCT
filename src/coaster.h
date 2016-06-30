@@ -193,6 +193,9 @@ public:
 	int32 max_speed;           ///< maximum speed recorded while testing ride
 	int32 avg_speed;           ///< average speed recorded while testing ride
 	int16 time;                ///< running time of ride (ticks passsed while testing)
+	int16 max_lat_g;           ///< maximum lateral g force recorded while testing ride
+	int16 max_pos_vert_g;      ///< maximum vertical g force recorded while testing ride
+	int16 max_neg_vert_g;      ///< maximum negative vertical g force recorded while testing ride
 
 private:
 	void UpdateRatings();
