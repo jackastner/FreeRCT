@@ -261,6 +261,32 @@ int16 TrackPiece::GetLateralMultiplier()
 }
 
 /**
+ * Get the multiplier used when calculating vertical G force of a train traveling over this TrackPiece.
+ * @return vertical G force multiplier
+ */
+int16 TrackPiece::GetVerticalMultiplier()
+{
+	switch(this->GetSlope()){
+		case TSL_STRAIGHT_DOWN:
+			return -3;
+		case TSL_STEEP_DOWN:
+			return -2;
+		case TSL_DOWN:
+			return -1;
+		case TSL_FLAT:
+			return 0;
+		case TSL_UP:
+			return 1;
+		case TSL_STEEP_UP:
+			return 2;
+		case TSL_STRAIGHT_UP:
+			return 3;
+		default:
+			return 0;
+	}
+}
+
+/**
  * Constructor taking values for all its fields.
  * @param vox_pos Position of the positioned track piece.
  * @param piece Track piece to use.
