@@ -241,7 +241,7 @@ Rectangle16 TrackPiece::GetArea() const
  * Get the mutliplier used when calculating lateral G force of a train traveling over this TrackPiece.
  * @return lateral G force multiplier
  */
-int16 TrackPiece::GetLateralMultiplier()
+int16 TrackPiece::GetLateralMultiplier() const
 {
 	switch(this->GetBend()){
 		case TBN_STRAIGHT:
@@ -264,7 +264,7 @@ int16 TrackPiece::GetLateralMultiplier()
  * Get the multiplier used when calculating vertical G force of a train traveling over this TrackPiece.
  * @return vertical G force multiplier
  */
-int16 TrackPiece::GetVerticalMultiplier()
+int16 TrackPiece::GetVerticalMultiplier() const
 {
 	switch(this->GetSlope()){
 		case TSL_STRAIGHT_DOWN:
