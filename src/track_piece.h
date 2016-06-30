@@ -133,7 +133,7 @@ public:
 class BezierTrackCurve : public TrackCurve {
 public:
 	BezierTrackCurve();
-
+ 
 	double GetValue(uint32 distance) const override
 	{
 		int end = this->curve.size();
@@ -164,6 +164,7 @@ public:
 
 	bool Load(RcdFileReader *rcd_file, const ImageMap &sprites);
 	Rectangle16 GetArea() const;
+	int16 GetLateralMultiplier();
 
 	uint8 entry_connect;      ///< Entry connection code
 	uint8 exit_connect;       ///< Exit connection code

@@ -238,6 +238,29 @@ Rectangle16 TrackPiece::GetArea() const
 }
 
 /**
+ * Get the mutliplier used when calculating lateral G force of a train traveling over this TrackPiece.
+ * @return lateral G force multiplier
+ */
+int16 TrackPiece::GetLateralMultiplier()
+{
+	switch(this->GetBend()){
+		case TBN_STRAIGHT:
+			return 0;
+		case TBN_LEFT_WIDE:
+		case TBN_RIGHT_WIDE:
+			return 1;
+		case TBN_LEFT_NORMAL:
+		case TBN_RIGHT_NORMAL:
+			return 2;
+		case TBN_LEFT_TIGHT:
+		case TBN_RIGHT_TIGHT:
+			return 3;
+		default:
+			return 0;
+	}
+}
+
+/**
  * Constructor taking values for all its fields.
  * @param vox_pos Position of the positioned track piece.
  * @param piece Track piece to use.
