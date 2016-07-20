@@ -257,11 +257,18 @@ public:
 	void Load(Loader &ldr);
 	void Save(Saver &svr);
 
+	void CalculateRatings();
+
 	PositionedTrackPiece *pieces; ///< Positioned track pieces.
 	int capacity;                 ///< Number of entries in the #pieces.
 	uint32 coaster_length;        ///< Total length of the roller coaster track (in 1/256 pixels).
 	CoasterTrain trains[4];       ///< Trains at the roller coaster (with an arbitrary max size). A train without cars means the train is not used.
 	const CarType *car_type;      ///< Type of cars running at the coaster.
+
+	bool ratings_finalized;
+	int16 excitement;
+	int16 nausea;
+	int16 intensity;
 };
 
 bool LoadCoasterPlatform(RcdFileReader *rcdfile, const ImageMap &sprites);

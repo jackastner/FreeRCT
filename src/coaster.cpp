@@ -650,6 +650,7 @@ CoasterInstance::CoasterInstance(const CoasterType *ct, const CarType *car_type)
 		train.cur_piece = this->pieces;
 	}
 	this->car_type = car_type;
+	this->ratings_finalized = false;
 }
 
 CoasterInstance::~CoasterInstance()
@@ -666,12 +667,24 @@ bool CoasterInstance::IsAccessible()
 	return this->GetFirstPlacedTrackPiece() >= 0;
 }
 
+void CoasterInstance::CalculateRatings()
+{
+	this->excitement = 0;
+	this->nausea = 0;
+	this->intensity = 0;
+	this->ratings_finalized = true;
+}
+
 void CoasterInstance::OnAnimate(int delay)
 {
 	for (uint i = 0; i < lengthof(this->trains); i++) {
 		CoasterTrain &train = this->trains[i];
 		if (train.cars.size() == 0) break;
 		train.OnAnimate(delay);
+	}
+
+	if(this->trains[0].completed_circuits > 1 && !this->ratings_finalized){
+		this->CalculateRatings();
 	}
 }
 
