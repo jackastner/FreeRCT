@@ -43,7 +43,7 @@ static const WidgetPart _coaster_instance_gui_parts[] = {
 		EndContainer(),
 
 		Widget(WT_PANEL, INVALID_WIDGET_INDEX, COL_RANGE_DARK_RED),
-			Intermediate(11, 2), SetPadding(2, 2, 2, 2),
+			Intermediate(3, 2), SetPadding(2, 2, 2, 2),
 
 			Widget(WT_LEFT_TEXT, INVALID_WIDGET_INDEX, COL_RANGE_DARK_RED), SetData(GUI_COASTER_INSTANCE_EXCITEMENT_TEXT,STR_NULL),
 			Widget(WT_RIGHT_TEXT, CIW_EXCITEMENT, COL_RANGE_DARK_RED), SetData(STR_ARG1, STR_NULL),SetMinimalSize(60, 10),
@@ -53,6 +53,10 @@ static const WidgetPart _coaster_instance_gui_parts[] = {
 
 			Widget(WT_LEFT_TEXT, INVALID_WIDGET_INDEX, COL_RANGE_DARK_RED), SetData(GUI_COASTER_INSTANCE_INTENSITY_TEXT,STR_NULL),
 			Widget(WT_RIGHT_TEXT, CIW_INTENSITY, COL_RANGE_DARK_RED), SetData(STR_ARG1, STR_NULL),SetMinimalSize(60, 10),
+
+
+		Widget(WT_PANEL, INVALID_WIDGET_INDEX, COL_RANGE_DARK_RED),
+			Intermediate(8, 2), SetPadding(2, 2, 2, 2),
 
 			Widget(WT_LEFT_TEXT, INVALID_WIDGET_INDEX, COL_RANGE_DARK_RED), SetData(GUI_COASTER_INSTANCE_MAX_HEIGHT_TEXT,STR_NULL),
 			Widget(WT_RIGHT_TEXT, CIW_MAX_HEIGHT, COL_RANGE_DARK_RED), SetData(STR_ARG1, STR_NULL),SetMinimalSize(60, 10),
