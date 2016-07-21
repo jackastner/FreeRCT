@@ -135,6 +135,9 @@ strings {
 		SHOP_MANAGER_CLOSED_TEXT:        "Shop is closed";
 
 		// Coaster instance window strings.
+		COASTER_INSTANCE_EXCITEMENT_TEXT:      "Excitement";
+		COASTER_INSTANCE_NAUSEA_TEXT:          "Nausea";
+		COASTER_INSTANCE_INTENSITY_TEXT:       "Intensity";
 		COASTER_INSTANCE_MAX_HEIGHT_TEXT:      "Max Height";
 		COASTER_INSTANCE_DROP_COUNT_TEXT:      "Drop Count";
 		COASTER_INSTANCE_MAX_DROP_HEIGHT_TEXT: "Max Drop Height";
