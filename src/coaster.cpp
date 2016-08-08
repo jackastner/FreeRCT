@@ -413,8 +413,14 @@ void CoasterTrain::UpdateRatings()
 		} else if (cur_vert_g < this->max_neg_vert_g){
 			this->max_neg_vert_g = cur_vert_g;
 		}
-
-	} 
+	} else if(this->in_drop){
+		/*final update to max_drop_height at end of testing*/
+		int16 drop_height = this->drop_start_height - prev_height;
+		if(drop_height > this->max_drop_height){
+			this->max_drop_height = drop_height;
+		}
+		this->in_drop = false;
+	}
 }
 
 /**
