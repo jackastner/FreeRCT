@@ -702,7 +702,6 @@ void CoasterInstance::ApplyLengthRatings()
 void CoasterInstance::ApplyDropsRatings()
 {
 	this->excitement += std::min(this->trains[0].drop_count - this->GetCoasterType()->min_drops,this->GetCoasterType()->max_drops) * this->GetCoasterType()->drops_multiplier;
-        printf("%d\n",this->excitement);
 }
 
 void CoasterInstance::OnAnimate(int delay)
