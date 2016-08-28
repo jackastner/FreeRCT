@@ -75,6 +75,10 @@ bool CarType::Load(RcdFileReader *rcdfile, const ImageMap &sprites)
 CoasterType::CoasterType() : RideType(RTK_COASTER)
 {
 	this->voxels = {};
+
+	/*TODO: Initialize these values with data from rcd file*/
+	max_length = 2560000;
+	length_multiplier = 1;
 }
 
 CoasterType::~CoasterType()
@@ -675,10 +679,20 @@ bool CoasterInstance::IsAccessible()
 
 void CoasterInstance::CalculateRatings()
 {
+	/*Initialize ratings to a default value*/
 	this->excitement = 0;
 	this->nausea = 0;
 	this->intensity = 0;
+
+	this->ApplyLengthRatings();
+
 	this->ratings_finalized = true;
+}
+
+void CoasterInstance::ApplyLengthRatings()
+{
+	/*based on https://github.com/OpenRCT2/OpenRCT2/blob/7e5c22145edea04107b8fec34647a14855f14ea3/src/ride/ride_ratings.c#L1215-L1218 */
+	this->excitement += std::min(this->coaster_length,this->GetCoasterType()->max_length) * this->GetCoasterType()->length_multiplier / 65536;
 }
 
 void CoasterInstance::OnAnimate(int delay)

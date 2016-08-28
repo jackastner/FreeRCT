@@ -84,6 +84,9 @@ public:
 	uint8 max_number_cars;     ///< Maximum number of cars in a train.
 	std::vector<const TrackVoxel *> voxels; ///< All voxels of all track pieces (do not free the track voxels, #pieces owns this data).
 
+	uint32 max_length;        ///< Length after wich a coaster does not continue to gain excitement
+	double length_multiplier; ///< multiplier for how much length effects ratings
+
 	std::vector<ConstTrackPiecePtr> pieces; ///< Track pieces of the coaster.
 
 private:
@@ -264,6 +267,8 @@ public:
 	uint32 coaster_length;        ///< Total length of the roller coaster track (in 1/256 pixels).
 	CoasterTrain trains[4];       ///< Trains at the roller coaster (with an arbitrary max size). A train without cars means the train is not used.
 	const CarType *car_type;      ///< Type of cars running at the coaster.
+
+	void ApplyLengthRatings();
 
 	bool ratings_finalized;
 	int16 excitement;
