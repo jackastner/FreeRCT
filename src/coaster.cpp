@@ -78,6 +78,9 @@ CoasterType::CoasterType() : RideType(RTK_COASTER)
 
 	/*TODO: Initialize these values with data from rcd file*/
 	max_length = 2560000;
+	max_drops = 10;
+	min_drops = 0;
+	drops_multiplier = 1;
 	length_multiplier = 1;
 }
 
@@ -685,6 +688,7 @@ void CoasterInstance::CalculateRatings()
 	this->intensity = 0;
 
 	this->ApplyLengthRatings();
+	this->ApplyDropsRatings();
 
 	this->ratings_finalized = true;
 }
@@ -693,6 +697,12 @@ void CoasterInstance::ApplyLengthRatings()
 {
 	/*based on https://github.com/OpenRCT2/OpenRCT2/blob/7e5c22145edea04107b8fec34647a14855f14ea3/src/ride/ride_ratings.c#L1215-L1218 */
 	this->excitement += std::min(this->coaster_length,this->GetCoasterType()->max_length) * this->GetCoasterType()->length_multiplier / 65536;
+}
+
+void CoasterInstance::ApplyDropsRatings()
+{
+	this->excitement += std::min(this->trains[0].drop_count - this->GetCoasterType()->min_drops,this->GetCoasterType()->max_drops) * this->GetCoasterType()->drops_multiplier;
+        printf("%d\n",this->excitement);
 }
 
 void CoasterInstance::OnAnimate(int delay)

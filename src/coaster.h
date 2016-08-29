@@ -85,6 +85,9 @@ public:
 	std::vector<const TrackVoxel *> voxels; ///< All voxels of all track pieces (do not free the track voxels, #pieces owns this data).
 
 	uint32 max_length;        ///< Length after wich a coaster does not continue to gain excitement
+	uint32 max_drops;         ///< Drops after wich a coaster does not continue to gain excitement
+	uint32 min_drops;         ///< Minimum number of drops a coaster needs to not be penalized
+	double drops_multiplier;  ///< Multiplier for how much drops effects ratings
 	double length_multiplier; ///< multiplier for how much length effects ratings
 
 	std::vector<ConstTrackPiecePtr> pieces; ///< Track pieces of the coaster.
@@ -269,6 +272,7 @@ public:
 	const CarType *car_type;      ///< Type of cars running at the coaster.
 
 	void ApplyLengthRatings();
+	void ApplyDropsRatings();
 
 	bool ratings_finalized;
 	int16 excitement;
