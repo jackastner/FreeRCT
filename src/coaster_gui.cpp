@@ -17,6 +17,53 @@
 #include "viewport.h"
 #include "map.h"
 #include "gui_sprites.h"
+#include "entity_gui.h"
+
+/** Window to prompt for removing a roller coaster. */
+class CoasterRemoveWindow : public EntityRemoveWindow  {
+public:
+	CoasterRemoveWindow(CoasterInstance *ci);
+
+	void OnClick(WidgetNumber number, const Point16 &pos) override;
+	void SetWidgetStringParameters(WidgetNumber wid_num) const override;
+
+private:
+	CoasterInstance *ci; ///< Roller coaster instance to remove.
+};
+
+/**
+ * Constructor of the roller coaster remove window.
+ * @param ci Roller coaster instance to remove.
+ */
+CoasterRemoveWindow::CoasterRemoveWindow(CoasterInstance *ci) : EntityRemoveWindow(WC_COASTER_REMOVE, ci->GetIndex())
+{
+	this->ci = ci;
+}
+
+void CoasterRemoveWindow::OnClick(WidgetNumber number, const Point16 &pos)
+{
+	if (number == ERW_YES) {
+		delete GetWindowByType(WC_COASTER_MANAGER, this->ci->GetIndex());
+		_rides_manager.DeleteInstance(this->ci->GetIndex());
+	}
+	delete this;
+}
+
+void CoasterRemoveWindow::SetWidgetStringParameters(WidgetNumber wid_num) const
+{
+	if (wid_num == ERW_MESSAGE) _str_params.SetUint8(1, (uint8 *)this->ci->name);
+}
+
+/**
+ * Open a coaster remove window for the given roller coaster.
+ * @param ci Coaster instance to remove.
+ */
+void ShowCoasterRemove(CoasterInstance *ci)
+{
+	if (HighlightWindowByType(WC_COASTER_REMOVE, ci->GetIndex())) return;
+
+	new CoasterRemoveWindow(ci);
+}
 
 /** Widget numbers of the roller coaster instance window. */
 enum CoasterInstanceWidgets {
@@ -32,6 +79,7 @@ enum CoasterInstanceWidgets {
 	CIW_MAX_LAT_G,
 	CIW_MAX_POS_VERT_G,
 	CIW_MAX_NEG_VERT_G,
+	CIW_REMOVE,   ///< Remove button widget.
 };
 
 /** Widget parts of the #CoasterInstanceWindow. */
@@ -82,6 +130,8 @@ static const WidgetPart _coaster_instance_gui_parts[] = {
 			Widget(WT_LEFT_TEXT, INVALID_WIDGET_INDEX, COL_RANGE_DARK_RED), SetData(GUI_COASTER_INSTANCE_MAX_NEG_VERT_G_TEXT,STR_NULL),
 			Widget(WT_RIGHT_TEXT, CIW_MAX_NEG_VERT_G, COL_RANGE_DARK_RED), SetData(STR_ARG1, STR_NULL),SetMinimalSize(60, 10),
 
+		Widget(WT_TEXT_PUSHBUTTON, CIW_REMOVE, COL_RANGE_DARK_RED),
+				SetData(GUI_ENTITY_REMOVE, GUI_ENTITY_REMOVE_TOOLTIP),
 	EndContainer(),
 };
 
@@ -93,6 +143,7 @@ public:
 	~CoasterInstanceWindow();
 
 	void SetWidgetStringParameters(WidgetNumber wid_num) const override;
+	void OnClick(WidgetNumber widget, const Point16 &pos) override;
 
 private:
 	CoasterInstance *ci; ///< Roller coaster instance to display and control.
@@ -155,6 +206,11 @@ void CoasterInstanceWindow::SetWidgetStringParameters(WidgetNumber wid_num) cons
 			_str_params.SetNumber(1,this->ci->trains[0].max_neg_vert_g);
 			break;
 	}
+}
+
+void CoasterInstanceWindow::OnClick(WidgetNumber widget, const Point16 &pos)
+{
+	if (widget == CIW_REMOVE) ShowCoasterRemove(this->ci);
 }
 
 /**
