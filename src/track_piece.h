@@ -133,7 +133,7 @@ public:
 class BezierTrackCurve : public TrackCurve {
 public:
 	BezierTrackCurve();
- 
+
 	double GetValue(uint32 distance) const override
 	{
 		int end = this->curve.size();
