@@ -222,6 +222,11 @@ const RideType *RideInstance::GetRideType() const
  */
 
 /**
+ * \fn void RideInstance::RemoveSelf()
+ * Remove this ride from all voxels in #_world
+ */
+
+/**
  * Can the ride be visited, assuming it is approached from direction \a edge?
  * @param vox Position of the voxel with the ride.
  * @param edge Direction of movement (exit direction of the neighbouring voxel).

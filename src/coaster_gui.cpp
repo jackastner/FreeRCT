@@ -44,6 +44,7 @@ void CoasterRemoveWindow::OnClick(WidgetNumber number, const Point16 &pos)
 {
 	if (number == ERW_YES) {
 		delete GetWindowByType(WC_COASTER_MANAGER, this->ci->GetIndex());
+		this->ci->RemoveSelf();
 		_rides_manager.DeleteInstance(this->ci->GetIndex());
 	}
 	delete this;

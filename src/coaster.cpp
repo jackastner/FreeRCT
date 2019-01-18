@@ -688,6 +688,15 @@ void CoasterInstance::RemoveAllPeople()
 	/** \todo Implement when allowing people on the ride. */
 }
 
+void CoasterInstance::RemoveSelf()
+{
+	for (int i = 0; i < this->capacity; i++) {
+		if(this->pieces[i].piece != nullptr){
+			RemovePositionedPiece(this->pieces[i]);
+		}
+	}
+}
+
 /**
  * Check the state of the coaster ride, and set the #state flag.
  * @return The new coaster instance state.

@@ -41,6 +41,7 @@ void ShopRemoveWindow::OnClick(WidgetNumber number, const Point16 &pos)
 {
 	if (number == ERW_YES) {
 		delete GetWindowByType(WC_SHOP_MANAGER, this->si->GetIndex());
+		this->si->RemoveSelf();
 		_rides_manager.DeleteInstance(this->si->GetIndex());
 	}
 	delete this;

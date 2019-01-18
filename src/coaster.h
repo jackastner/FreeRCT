@@ -214,6 +214,7 @@ public:
 	RideEntryResult EnterRide(int guest, TileEdge entry) override;
 	XYZPoint32 GetExit(int guest, TileEdge entry_edge) override;
 	void RemoveAllPeople() override;
+	void RemoveSelf() override;
 
 	RideInstanceState DecideRideState();
 

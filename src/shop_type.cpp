@@ -234,6 +234,13 @@ void ShopInstance::RemoveAllPeople()
 	}
 }
 
+void ShopInstance::RemoveSelf()
+{
+	Voxel *vx = _world.GetCreateVoxel(this->vox_pos, true);
+	vx->SetInstance(SRI_FREE);
+	vx->SetInstanceData(0);
+}
+
 void ShopInstance::OnAnimate(int delay)
 {
 	this->onride_guests.OnAnimate(delay); // Update remaining time of onride guests.
